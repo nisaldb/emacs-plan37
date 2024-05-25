@@ -135,8 +135,8 @@
 ;; Consult is useful for advance searching
 (use-package consult
   :ensure t
-  :define (xref-show-xrefs-function
-	   xref-show-definitions-function)
+  :defines (xref-show-xrefs-function
+	        xref-show-definitions-function)
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :bind (([remap switch-to-buffer] . 'consult-buffer)
 	 ([remap switch-to-buffer-other-window] . 'consult-buffer-other-window)

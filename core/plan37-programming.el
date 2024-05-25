@@ -22,21 +22,58 @@
 
 ;; This enhance the general programming experience in Emacs.
 ;; These configurations may relate to a specific class of programming
-;; languages such as Lisps or C-mode languages, but not for a specific
-;; programming language.
+;; languages such as Lisps or C-mode languages.
+;;
+;; Configurations related to specific languages are in their own
+;; files, named as `plan37-lang-XXX.el'.
 
 ;;; Code:
+
+(use-package emacs
+  :ensure nil
+  :demand t
+  :config
+  (setq tab-first-completion 'word-or-paren-or-punct)
+  (setq-default tab-width 4
+		indent-tabs-mode nil))
 
 ;; Syntax checking with Flycheck.
 ;; I find FlyMake to be hard to configure
 ;; TODO:: can I use FlyMake instead?
 (use-package flycheck
+  :disabled
   :ensure t
+  :diminish t
   ;; List of Flycheck enabled major modes
   ;; TODO:: move this into a custom variable
   :hook (emacs-lisp-mode . flycheck-mode)
   :config
   (setq-default flycheck-emacs-lisp-load-path 'inherit))
+
+;; Code folding
+(use-package hideshow
+  :ensure nil
+  :hook (prog-mode . hs-minor-mode)
+  :bind ("C-c C-z" . hs-toggle-hiding)
+  :config
+  ;; diminish hs-minor-mode. usual :diminish keyword does not work here
+  (add-hook 'hs-minor-mode-hook (lambda () (diminish 'hs-minor-mode))))
+
+;; Paredit for Lisps
+(use-package paredit
+  :ensure t
+  :diminish " P"
+  :hook ((lisp-mode emacs-lisp-mode lisp-interaction-mode) . paredit-mode))
+
+;; Eglot.
+(use-package eglot
+  :ensure nil
+  :functions (eglot-ensure)
+  :commands (eglot)
+  :config
+  ;; don't wait for server
+  (setq eglot-sync-connect nil)
+  (setq eglot-autoshutdown t))
 
 (provide 'plan37-programming)
 ;;; plan37-programming.el ends here

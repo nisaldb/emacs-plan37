@@ -37,6 +37,9 @@
 ;; Smoother scrolling
 (add-hook 'after-init-hook 'pixel-scroll-precision-mode)
 
+;; display time in modeline
+(display-time-mode +1)
+
 ;; Diminish for mode line
 (use-package diminish
   :ensure t)
@@ -161,6 +164,23 @@
   :config
   (setq aw-keys '(?a ?s ?d ?f ?z ?x ?c ?v)
 	aw-scope 'frame))
+
+;; Fancy icons
+(use-package nerd-icons
+  :ensure t
+  :defines (nerd-icons-color-icons)
+  :demand t
+  :if (display-graphic-p)
+  :init
+  (setq nerd-icons-color-icons nil))
+
+;; Simplify the modeline
+(use-package doom-modeline
+  :ensure t
+  :demand t
+  :hook (after-init . doom-modeline-mode)
+  :init
+  (setq doom-modeline-time t))
 
 ;; Add some padding to the buffer.
 ;; This is currently on-demand by <f8>
