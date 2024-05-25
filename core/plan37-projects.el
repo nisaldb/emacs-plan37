@@ -61,7 +61,7 @@
   :init
   (setq magit-define-global-key-bindings nil)
   :config
-  (setq git-commit-style-conventions-checks '(non-empty-second-line)))
+  (setq git-commit-style-convention-checks '(non-empty-second-line)))
 	
 (provide 'plan37-projects)
 ;;; plan37-projects.el ends here

@@ -53,7 +53,7 @@
     "Use `vundo' if the last command is in `plan37--vundo-repeatable-undo-functions'.
 That is if I'm using undo more than once, start visualizing the undo tree."
     (interactive)
-    (if (and (member last-command plan37-vundo-if-repeat-undo)
+    (if (and (member last-command plan37--vundo-repeatable-undo-functions)
 	     (not undo-in-region))
 	(call-interactively 'vundo)
       (apply args)))
@@ -62,5 +62,6 @@ That is if I'm using undo more than once, start visualizing the undo tree."
    (lambda (fn)
      (advice-add fn :around #'plan37--vundo-if-repeat-undo))
    plan37--vundo-repeatable-undo-functions))
+
 (provide 'plan37-editor)
 ;;; plan37-editor.el ends here

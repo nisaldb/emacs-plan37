@@ -1,12 +1,37 @@
-;; User information
+;;; init.el --- Plan37 Configuration Entry Point     -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2024  Nisal D. Bandara
+
+;; Author: Nisal D. Bandara;; User information <nisalb@hey.com>
+;; Keywords: convenience
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This is my Emacs configurations.
+
+;;; Code:
+
+
 (setq user-full-name "Nisal D. Bandara"
       user-mail-address "nisalb@hey.com")
 
 ;; Add NEXT files to the load path
 (defvar plan37-load-paths
   '("core" "langs")
-  "A list of directory names relative the `user-emacs-directory',
-to be added to the load path.
+  "A list of directory names to be added to the load path.
 NOTE Directories are not added recursively.")
 
 (dolist (dir plan37-load-paths load-path)
@@ -42,6 +67,7 @@ NOTE Directories are not added recursively.")
 ;; For macOS
 (when (eq system-type 'darwin)
   (progn
+    ;; If Flycheck complains here, it is safe it ignore it.
     (setq mac-option-modifier 'super
 	  mac-command-modifier 'meta)))
 
@@ -67,4 +93,7 @@ NOTE Directories are not added recursively.")
 (require 'plan37-completion)
 (require 'plan37-projects)
 (require 'plan37-editor)
+(require 'plan37-programming)
 
+(provide 'init)
+;;; init.el ends here

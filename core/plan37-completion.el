@@ -39,7 +39,7 @@
   :demand t
   :config
   (setq completion-styles '(basic substring initials flex orderless)
-	resize-mini-window t)
+	resize-mini-windows t)
 
   ;; Reset all the per-category defaults, so that
   ;;  (1) I can specify my own styles for required categories
@@ -97,7 +97,7 @@
   :ensure nil
   :hook (after-init . minibuffer-depth-indicate-mode)
   :config
-  (setq read-minibuffer-restore-window nil))
+  (setq read-minibuffer-restore-windows nil))
 
 ;; Save minibuffer and related histories
 (use-package savehist
@@ -105,7 +105,7 @@
   :hook (after-init . savehist-mode)
   :config
   (setq savehist-save-minibuffer-history t
-	history-delete-duplicate t)
+	history-delete-duplicates t)
   (add-to-list 'savehist-additional-variables 'kill-ring))
 
 ;; Corfu for in-buffer completion
@@ -135,6 +135,8 @@
 ;; Consult is useful for advance searching
 (use-package consult
   :ensure t
+  :define (xref-show-xrefs-function
+	   xref-show-definitions-function)
   :hook (completion-list-mode . consult-preview-at-point-mode)
   :bind (([remap switch-to-buffer] . 'consult-buffer)
 	 ([remap switch-to-buffer-other-window] . 'consult-buffer-other-window)
@@ -145,8 +147,8 @@
 	 ("C-c C-f" . consult-find)
 	 ("C-c C-r" . consult-ripgrep))
   :init
-  (setq xref-show-xref-function #'consult-xref
-	xref-show-definition-function #'consult-xref)
+  (setq xref-show-xrefs-function #'consult-xref
+	xref-show-definitions-function #'consult-xref)
   :config
   (setq consult-narrow-key "<"
 	consult-find-args
