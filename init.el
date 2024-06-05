@@ -88,12 +88,31 @@ NOTE Directories are not added recursively.")
 	     (file-exists-p custom-file))
     (load custom-file :nomessage)))
 
+;; A better terminal
+(use-package vterm
+  :ensure t
+  :defer 1
+  :custom
+  (vterm-kill-buffer-on-exit nil))
+(use-package multi-vterm
+  :ensure t
+  :after vterm
+  :bind (("C-c t" . multi-vterm)
+         ("C-c T" . multi-vterm-dedicated-open))
+  :init
+  (setq multi-vterm-dedicated-window-height-percent 30))
+
 ;; Load modules
 (require 'plan37-ui)
 (require 'plan37-completion)
 (require 'plan37-projects)
 (require 'plan37-editor)
 (require 'plan37-programming)
+
+;; Language Support
+(require 'plan37-lang-c)
+(require 'plan37-lang-org)
+(require 'plan37-lang-ruby)
 
 (provide 'init)
 ;;; init.el ends here
