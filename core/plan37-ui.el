@@ -54,7 +54,7 @@
   (progn
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme 'ef-duo-light :noconfirm))
-  (global-set-key (kbd "C-c T") '("Toggle theme" . ef-themes-toggle)))
+  (global-set-key (kbd "C-c u t") '("Toggle theme" . ef-themes-toggle)))
 
 ;; Font
 (use-package fontaine

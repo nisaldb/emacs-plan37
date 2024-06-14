@@ -128,7 +128,7 @@
   :ensure t
   :defer 1
   :bind (:map minibuffer-local-map
-	      ("M-A" . marginalia-cycle))
+	          ("M-A" . marginalia-cycle))
   :config
   (marginalia-mode 1))
 

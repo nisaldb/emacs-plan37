@@ -65,7 +65,6 @@ C style is set to `postgresql' style.")
 
 (use-package meson-mode
   :ensure t
-  :hook (c-mode . meson-mode)
   :init
   (setq meson-indent-basic 4))
 

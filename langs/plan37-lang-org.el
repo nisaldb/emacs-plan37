@@ -25,10 +25,12 @@
 ;;; Code:
 
 (use-package org
-  :ensure nil
+  :ensure t
   :bind (("C-c a" . org-agenda)
          ("C-c c" . org-capture))
   :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t)))
   (setq org-startup-indented t))
 
 (provide 'plan37-lang-org)

@@ -24,7 +24,6 @@
 
 ;;; Code:
 
-
 (setq user-full-name "Nisal D. Bandara"
       user-mail-address "nisalb@hey.com")
 
