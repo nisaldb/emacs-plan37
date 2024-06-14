@@ -91,15 +91,21 @@ NOTE Directories are not added recursively.")
 (use-package vterm
   :ensure t
   :defer 1
+  :bind (("C-c t" . vterm-other-window))
   :custom
   (vterm-kill-buffer-on-exit nil))
 (use-package multi-vterm
   :ensure t
   :after vterm
-  :bind (("C-c t" . multi-vterm)
-         ("C-c T" . multi-vterm-dedicated-open))
+  :bind (("C-c T" . multi-vterm-dedicated-open))
   :init
   (setq multi-vterm-dedicated-window-height-percent 30))
+
+;; somehow this fixes a fontification error in Org-Mode for C code blocks
+(setq backtrace-on-redisplay-error t)
+
+;; Enable EDE mode
+(global-ede-mode t)
 
 ;; Load modules
 (require 'plan37-ui)
